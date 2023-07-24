@@ -1,0 +1,95 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(235, 235, 235);
+    font-family: 'Red Hat Display', sans-serif; 
+}
+
+header {
+    background-color: rgb(75, 75, 193);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-text {
+    padding-left: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color:white;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-input {
+    width: 250px; 
+    padding: 5px 10px;
+}
+
+.header-icon {
+    width: 30px;
+    height: 30px;
+    margin: 0px 10px;
+}
+
+
+.main-image {
+    height: 200px;
+    width: 200px;
+}
+
+.container-to-photo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.upload {
+    margin-top: 20px;
+    border: none;
+    background-color: rgb(75, 75, 193);
+    border-radius: 5px;
+    color: #ffffff;
+    height: 35px;
+    font-size: 16px;
+}
+
+.new-post {
+    margin-top:50px;
+    margin-left: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.details {
+    width: 70%;
+    height: 80px;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.post {
+    background-color: rgb(235, 235, 235);
+    margin-top:50px;
+    margin-left: 40px;
+    max-width: 70%;
+}
+
+.quit{
+    background-color: rgb(235, 235, 235);
+    border-radius: 5px;
+}

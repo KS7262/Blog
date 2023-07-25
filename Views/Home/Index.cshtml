@@ -12,14 +12,14 @@
 </head>
 <body>
     <div class="items">
-        <form>
-            <input class="fields" placeholder="Пошта"> <br>
-            <input class="fields" placeholder="Пароль"><br>
-            <button>Увійти</button>
+        <form asp-controller="Home" asp-action="Autorization">
+            <input class="fields" placeholder="Пошта" name="Email"> <br>
+            <input class="fields" type="password" placeholder="Пароль" name="Password"><br>
+            <button type="submit">Увійти</button>
 
         </form>
         <div class="login-link">
-            <p>Ще нама аккаунту? <a>Зареєструватись</a></p>
+            <p>Ще нама аккаунту? <a asp-controller="Home" asp-action="Registration">Зареєструватись</a></p>
         </div>
     </div>
 </body>

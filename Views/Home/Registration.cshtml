@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Models;
+@model User
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,11 +16,24 @@
 </head>
 <body>
     <div class="items">
-        <form>
-            <input class="fields" placeholder="Ім'я"> <br>
-            <input class="fields" placeholder="Прізвище"> <br>
-            <input class="fields" placeholder="Пошта"> <br>
-            <input class="fields" placeholder="Пароль"><br>
+        <form asp-action="Registration" asp-controller="Home">
+            <div>
+                <input class="fields" placeholder="Імя" name="firstName"> <br>
+                <span class="error" asp-validation-for="FirstName"></span>
+            </div>
+            <div>
+                <input class="fields" placeholder="Прізвище" name="lastName"> <br>
+                <span class="error" asp-validation-for="LastName"></span>
+            </div>
+            <div>
+                <input class="fields" placeholder="Пошта" name="email"> <br>
+                <span class="error" asp-validation-for="Email"></span>
+            </div>
+            <div>
+                <input class="fields" placeholder="Пароль" name="password"><br>
+                <span class="error" type="password" asp-validation-for="Password"></span>
+            </div>
+
             <button type="submit">Зареєструватись</button>
         </form>
     </div>

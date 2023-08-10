@@ -2,7 +2,7 @@
 
 namespace Blog.DBFiles
 {
-    public static class DbActions
+    public static class UserDbActions
     {
         public static void CreateUser(User user)
         {
@@ -25,6 +25,16 @@ namespace Blog.DBFiles
                     }
                 }
                 return null;
+            }
+        }
+
+        public static bool UniqueEmail(string Email)
+        {
+            using (BlogContext db = new BlogContext())
+            {
+                bool isEmailUnique = !db.Users.Any(user => user.Email == Email);
+
+                return isEmailUnique;
             }
         }
 

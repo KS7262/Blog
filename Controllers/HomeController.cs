@@ -13,7 +13,7 @@ namespace Blog.Controllers
 
         public IActionResult Autorization(string Email, string password)
         {
-            if (DbActions.ReadByPassword(Email, password) != null)
+            if (UserDbActions.ReadByPassword(Email, password) != null)
             {
                 return RedirectToAction("UserPage", "Account");
             }
@@ -26,10 +26,11 @@ namespace Blog.Controllers
         [HttpPost]
         public IActionResult Registration(string firstName, string lastName, string email, string password)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && UserDbActions.UniqueEmail(email))
             {
-                DbActions.CreateUser(new User { FirstName = firstName, LastName = lastName, Email = email, Password = password });
-                Directory.CreateDirectory($"wwwroot/UsersFiles/{firstName}{lastName}{email}");
+                UserDbActions.CreateUser(new User { FirstName = firstName, LastName = lastName, Email = email, Password = password });
+                Directory.CreateDirectory($"wwwroot/UsersFiles/{email}");
+                AccountController.User = UserDbActions.ReadByPassword(email, password);
                 return RedirectToAction("UserPage", "Account");
             }
             else

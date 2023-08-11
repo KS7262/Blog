@@ -1,6 +1,7 @@
 ﻿using Blog.DBFiles;
 using Blog.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace Blog.Controllers
 {
@@ -15,6 +16,7 @@ namespace Blog.Controllers
         {
             if (UserDbActions.ReadByPassword(Email, password) != null)
             {
+                AccountController.User = UserDbActions.ReadByPassword(Email, password);
                 return RedirectToAction("UserPage", "Account");
             }
             return View();
@@ -28,9 +30,18 @@ namespace Blog.Controllers
         {
             if (ModelState.IsValid && UserDbActions.UniqueEmail(email))
             {
-                UserDbActions.CreateUser(new User { FirstName = firstName, LastName = lastName, Email = email, Password = password });
+                User user = new User { FirstName = firstName, LastName = lastName, Email = email, Password = password };
+
+                UserDbActions.CreateUser(user);
+
                 Directory.CreateDirectory($"wwwroot/UsersFiles/{email}");
-                AccountController.User = UserDbActions.ReadByPassword(email, password);
+                System.IO.File.Copy($"wwwroot/images/blank-profile-picture.webp", $"wwwroot/UsersFiles/{email}/blank-profile-picture.webp", true);
+
+                Image image = new Image { Src = $"wwwroot/UsersFiles/{email}/blank-profile-picture.webp", UserId = user.Id };
+                ImageDbActions.CreateImage(image);
+
+                AccountController.User = user;
+
                 return RedirectToAction("UserPage", "Account");
             }
             else

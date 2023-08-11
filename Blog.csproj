@@ -15,8 +15,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\UserFiles\kolya1999starodub%40gmail.com\" />
-  </ItemGroup>
-
 </Project>

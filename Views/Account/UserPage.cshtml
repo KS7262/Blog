@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Models;
+@model PageObjects
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -29,14 +32,19 @@
             <img src="~/images/blank-profile-picture-973461_960_720.webp" class="main-image">
             <button class="upload">Завантажити фото</button>
         </div>
+
         <form asp-controller="Account" asp-action="CreatePost" class="new-post">
             <textarea class="details" name="text"></textarea>
             <button class="upload">Додати пост</button>
         </form>
-        <div class="post">
-            <h3 class="Username">Користувач</h3>
-            <p class="text">Текст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст постуТекст посту Текст постуТекст постуТекст постуТекст посту</p>
-        </div>
+
+        @for (int i = Model.PostsText.Count - 1; i >= 0; i--)
+        {
+            <div class="post">
+                <h3 class="Username">@Model.User.FirstName @Model.User.LastName</h3>
+                <p class="text">@Model.PostsText[i]</p>
+            </div>
+        }
     </main>
 </body>
 </html>

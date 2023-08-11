@@ -6,14 +6,14 @@ namespace Blog.DBFiles
     public class PostDbActions
     {
 
-        public static List<Post> ReadPosts(User user)
+        public static List<string> ReadPosts(User user)
         {
-            List<Post> posts = new List<Post>();
+            List<string> posts = new List<string>();
             using (BlogContext db = new BlogContext())
             {
                 foreach (var item in db.Posts.Where(u => u.User == user))
                 {
-                    posts.Add(item);
+                    posts.Add(item.Text);
                 }
             }
             return posts;

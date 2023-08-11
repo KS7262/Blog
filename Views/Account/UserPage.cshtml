@@ -29,8 +29,8 @@
             <img src="~/images/blank-profile-picture-973461_960_720.webp" class="main-image">
             <button class="upload">Завантажити фото</button>
         </div>
-        <form class="new-post">
-            <textarea class="details"></textarea>
+        <form asp-controller="Account" asp-action="CreatePost" class="new-post">
+            <textarea class="details" name="text"></textarea>
             <button class="upload">Додати пост</button>
         </form>
         <div class="post">

@@ -18,5 +18,14 @@ namespace Blog.DBFiles
             }
             return posts;
         }
+
+        public static void CreatePost(Post post)
+        {
+            using (BlogContext db = new BlogContext())
+            {
+                db.Posts.Add(post);
+                db.SaveChanges();
+            }
+        }
     }
 }

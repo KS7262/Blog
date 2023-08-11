@@ -11,9 +11,16 @@ namespace Blog.Controllers
         public IActionResult UserPage()
         {
             pageObjects.User = User;
-            pageObjects.Post = PostDbActions.ReadPosts(User);
+            pageObjects.Posts = PostDbActions.ReadPosts(User);
             pageObjects.Image = ImageDbActions.ReadSrc(User);
-            return View();
+            return View(pageObjects);
+        }
+
+        public void CreatePost(string text)
+        {
+            Post post = new Post { Text = text, UserId = User.Id };
+            PostDbActions.CreatePost(post);
+            RedirectToAction("UserPage");
         }
     }
 }

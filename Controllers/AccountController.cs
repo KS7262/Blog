@@ -41,5 +41,10 @@ namespace Blog.Controllers
 
             return RedirectToAction("UserPage");
         }
+
+        public IActionResult Quit()
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

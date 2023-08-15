@@ -29,8 +29,11 @@
 
     <main>
         <div class="container-to-photo">
-            <img src="~/images/blank-profile-picture-973461_960_720.webp" class="main-image">
-            <button class="upload">Завантажити фото</button>
+            <img src="~/@Model.Image" class="main-image">
+            <form method="post" asp-controller="Account" asp-action="ChangeImage" enctype="multipart/form-data">     
+                <input type="file" id="fileInput" name="imageFile" accept=".jpg" value="Обрати фото">
+                <button class="upload" id="uploadButton" type="submit">Завантажити фото</button>
+            </form>
         </div>
 
         <form asp-controller="Account" asp-action="CreatePost" class="new-post">

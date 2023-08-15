@@ -21,5 +21,25 @@ namespace Blog.Controllers
             PostDbActions.CreatePost(post);
             return RedirectToAction("UserPage");
         }
+
+        public IActionResult ChangeImage(IFormFile imageFile)
+        {
+            if (imageFile != null && imageFile.Length > 0)
+            {
+                string email = User.Email;
+                
+                System.IO.File.Delete($"wwwroot/UsersFiles/{email}/blank-profile-picture.jpg");
+                
+                string uploadsFolder = Path.Combine("wwwroot", "UsersFiles", email.ToString());
+                string uniqueFileName = Path.Combine(uploadsFolder, "blank-profile-picture.jpg");
+
+                using (var fileStream = new FileStream(uniqueFileName, FileMode.Create))
+                {
+                    imageFile.CopyTo(fileStream);
+                }
+            }
+
+            return RedirectToAction("UserPage");
+        }
     }
 }

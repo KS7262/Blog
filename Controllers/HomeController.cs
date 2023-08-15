@@ -35,9 +35,9 @@ namespace Blog.Controllers
                 UserDbActions.CreateUser(user);
 
                 Directory.CreateDirectory($"wwwroot/UsersFiles/{email}");
-                System.IO.File.Copy($"wwwroot/images/blank-profile-picture.webp", $"wwwroot/UsersFiles/{email}/blank-profile-picture.webp", true);
+                System.IO.File.Copy($"wwwroot/images/blank-profile-picture.jpg", $"wwwroot/UsersFiles/{email}/blank-profile-picture.jpg", true);
 
-                Image image = new Image { Src = $"wwwroot/UsersFiles/{email}/blank-profile-picture.webp", UserId = user.Id };
+                Image image = new Image { Src = $"UsersFiles/{email}/blank-profile-picture.jpg", UserId = user.Id };
                 ImageDbActions.CreateImage(image);
 
                 AccountController.User = user;

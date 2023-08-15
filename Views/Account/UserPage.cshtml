@@ -29,7 +29,7 @@
 
     <main>
         <div class="container-to-photo">
-            <img src="~/@Model.Image" class="main-image">
+            <img src="~/@Model.Image?v=@DateTime.Now.Ticks" class="main-image">
             <form method="post" asp-controller="Account" asp-action="ChangeImage" enctype="multipart/form-data">     
                 <input type="file" id="fileInput" name="imageFile" accept=".jpg" value="Обрати фото">
                 <button class="upload" id="uploadButton" type="submit">Завантажити фото</button>

@@ -38,5 +38,26 @@ namespace Blog.DBFiles
             }
         }
 
+
+        public static List<User> FindUsers(string firstName, string lastName)
+        {
+            List<User> users = new List<User>();
+            using (BlogContext db = new BlogContext())
+            {
+                foreach (var item in db.Users.Where(u => u.FirstName == firstName && u.LastName == lastName))
+                {
+                    users.Add(item);
+                }
+            }
+            return users;
+        }
+
+        public static User FindUserByEmail(string email)
+        {
+            using (BlogContext db = new BlogContext())
+            {
+                return db.Users.FirstOrDefault(u => u.Email == email);
+            }
+        }
     }
 }

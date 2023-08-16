@@ -27,9 +27,9 @@ namespace Blog.Controllers
             if (imageFile != null && imageFile.Length > 0)
             {
                 string email = User.Email;
-                
+
                 System.IO.File.Delete($"wwwroot/UsersFiles/{email}/blank-profile-picture.jpg");
-                
+
                 string uploadsFolder = Path.Combine("wwwroot", "UsersFiles", email.ToString());
                 string uniqueFileName = Path.Combine(uploadsFolder, "blank-profile-picture.jpg");
 
@@ -46,5 +46,44 @@ namespace Blog.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
+
+        public IActionResult FindPerson(string fullName)
+        {
+
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                return RedirectToAction("UserPage");
+            }
+            else
+            {
+                fullName = fullName.Trim();
+                var names = fullName.Split(' ');
+
+                if (names.Length < 2)
+                {
+                    return RedirectToAction("UserPage");
+                }
+
+                string firstName = names[0];
+                string lastName = names[1];
+
+                List<User> users = UserDbActions.FindUsers(firstName, lastName);
+                return View("Search", users);
+            }
+        }
+        public IActionResult OpenFindPersonPage(string email)
+        {
+            PageObjects findUserObjects = new PageObjects();
+
+            User findedUser = UserDbActions.FindUserByEmail(email);
+            findUserObjects.User = findedUser;
+            findUserObjects.Image = ImageDbActions.ReadSrc(findedUser);
+            findUserObjects.PostsText = PostDbActions.ReadPosts(findedUser);
+
+            return View("SearchResult", findUserObjects);
+
+
+        }
+
     }
 }

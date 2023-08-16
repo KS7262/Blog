@@ -25,8 +25,11 @@
         </div>
 
         <div class="header-right">
-            <input type="text" class="header-input">
-            <button class="quit">Знайти</button>
+            <form asp-action="FindPerson" asp-controller="Account">
+                <input type="text" class="header-input" name="fullName">
+                <button class="quit">Знайти</button>
+            </form>
+            
         </div>
     </header>
 

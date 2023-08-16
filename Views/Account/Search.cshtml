@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Blog.Models;
+@model List<User>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,21 +17,34 @@
 <body>
     <header>
         <div class="header-left">
-            <button class="quit">Вийти</button>
+            <form asp-action="Quit" asp-controller="Account">
+                <button class="quit">Вийти</button>
+            </form>
+
             <p class="header-text">Blog</p>
         </div>
 
         <div class="header-right">
-            <input type="text" class="header-input">
-            <img src="images/search-svgrepo-com.svg" alt="Search Icon" class="header-icon">
+            <form asp-action="FindPerson" asp-controller="Account">
+                <input type="text" class="header-input" name="fullName">
+                <button class="quit">Знайти</button>
+            </form>
+
         </div>
     </header>
 
     <main>
-        <div class="user">
-            <h3>Ім'я</h3>
-            <button class="open-page">Відкрити сторінку</button>
-        </div>
+        @foreach (var item in Model)
+        {
+            <form asp-action="OpenFindPersonPage" asp-controller="Account">
+                <div class="user">
+                    <h3>@item.FirstName @item.LastName</h3>
+                    <input type="hidden" name="email" value="@item.Email">
+                    <button class="open-page">Відкрити сторінку</button>
+                </div>
+            </form>
+        }
+        
     </main>
 </body>
 </html>
